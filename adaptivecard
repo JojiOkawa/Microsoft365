@@ -1,0 +1,77 @@
+{
+    "type": "AdaptiveCard",
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.3",
+    "msTeams": {
+        "width": "full"
+    },
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "Medium",
+            "weight": "Bolder",
+            "text": "添付ファイル保存通知"
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "style": "Person",
+                            "url": "http://1.bp.blogspot.com/-65sRD3MXIlY/WLjrRdg1KUI/AAAAAAABCUc/X-VaDZ2CxII8qhhuD7kKnQnqB8ph9bLzwCLcB/s800/speed_slow_turtle_mail.png",
+                            "size": "Medium"
+                        }
+                    ],
+                    "width": "auto"
+                },
+                {
+                    "type": "Column",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "weight": "Bolder",
+                            "text": "@{triggerOutputs()?['body/from']}",
+                            "wrap": true
+                        },
+                        {
+                            "type": "TextBlock",
+                            "spacing": "None",
+                            "text": "@{body('タイム_ゾーンの変換')}",
+                            "isSubtle": true,
+                            "wrap": true
+                        }
+                    ],
+                    "width": "stretch"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "@{triggerOutputs()?['body/subject']}",
+                    "wrap": true,
+                    "size": "Large",
+                    "weight": "Default",
+                    "color": "Accent"
+                },
+                {
+                    "type": "TextBlock",
+                    "wrap": true,
+                    "text": "@{triggerOutputs()?['body/bodyPreview']}"
+                }
+            ]
+        },
+@{variables('var')}
+        {
+            "type": "TextBlock",
+            "text": "[> 保存フォルダを開く](@{outputs('新しいフォルダーの作成')?['body/{Link}']})",
+            "wrap": true,
+            "horizontalAlignment": "Right"
+        }
+    ]
+}
